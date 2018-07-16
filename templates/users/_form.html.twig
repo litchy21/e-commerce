@@ -1,0 +1,48 @@
+{{ form_start(form) }}
+
+<div class="form-group">
+    {{ form_label(form.name)}}
+    {{ form_widget(form.name, {'attr':{'class': 'form-control'}})}}
+</div>
+<div class="form-group">
+    {{ form_label(form.lastname)}}
+    {{ form_widget(form.lastname, {'attr':{'class': 'form-control'}})}}
+</div>
+<div class="form-group">
+    {{ form_label(form.username)}}
+    {{ form_widget(form.username, {'attr':{'class': 'form-control'}})}}
+</div>
+<div class="form-group">
+    {{ form_label(form.email)}}
+    {{ form_widget(form.email, {'attr':{'class': 'form-control'}})}}
+</div>
+<div class="form-group">
+    {{ form_label(form.password)}}
+    {{ form_widget(form.password, {'attr':{'class': 'form-control'}})}}
+</div>
+<div class="form-group">
+    {{ form_label(form.phone)}}
+    {{ form_widget(form.phone, {'attr':{'class': 'form-control'}})}}
+</div>
+<div class="form-group">
+    {{ form_label(form.address)}}
+    {{ form_widget(form.address, {'attr':{'class': 'form-control'}})}}
+</div>
+<div class="form-group">
+    {{ form_label(form.city)}}
+    {{ form_widget(form.city, {'attr':{'class': 'form-control'}})}}
+</div>
+<div class="form-group">
+    {{ form_label(form.state)}}
+    {{ form_widget(form.state, {'attr':{'class': 'form-control'}})}}
+</div>
+<div class="form-group">
+    {{ form_label(form.country)}}
+    {{ form_widget(form.country, {'attr':{'class': 'form-control'}})}}
+</div>
+<div class="form-group">
+    {{ form_label(form.postalCode)}}
+    {{ form_widget(form.postalCode, {'attr':{'class': 'form-control'}})}}
+</div>
+    <button class="btn btn-success mt-4">{{ button_label|default('Register') }}</button>
+{{ form_end(form) }}

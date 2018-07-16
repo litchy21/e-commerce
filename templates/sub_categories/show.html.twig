@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SubCategories{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+
+    
+    <div class="row">
+
+        <div class="col-3">
+            <h4 class="pl-4 mb-3">{{ category.name }}</h4>
+            <div class="list-group">
+                {% for sub_categorie in sub_categories %}
+                    {% if sub_categorie.name == sub_category.name %}
+                    <a href="{{ path('sub_categories_show', {'category': category.name, 'sub_category':  sub_categorie.name}) }}" class="list-group-item list-group-item-action active">
+                        {{ sub_categorie.name }}
+                    </a>
+                    {% else %}
+                    <a href="{{ path('sub_categories_show', {'category': category.name, 'sub_category':  sub_categorie.name}) }}" class="list-group-item list-group-item-action">
+                        {{ sub_categorie.name }}
+                    </a>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-9">
+    
+            <h4 class="pl-4 mb-3">{{ sub_category.name }}</h4>
+
+
+<table class="table">
+<thead class="thead-light">
+<tr>
+<th scope="col"></th>
+<th scope="col">Product</th>
+<th scope="col">Price</th>
+<th scope="col">Stock</th>
+</tr>
+</thead>
+<tbody>
+{% for product in products %}
+<tr>
+
+{% for productdetails in product.productdetails %}
+<th scope="row"><img class="card-small" src="{{ productdetails.photo }}"></th>
+
+<td>
+<div>
+<a class="alert-link alink" href="{{ path('products_show', {'category': category.name, 'sub_category':  product.subCategory, 'id': productdetails.id}) }}">
+{{ product }} 
+{% for variantoption in productdetails.variantoption %}
+{% if variantoption.variant == "Stockage" %}
+
+- {{ variantoption.detail }}
+
+{% elseif variantoption.variant == "Couleur" %}
+
+- {{ variantoption.detail }}
+
+{% endif %}
+{% endfor %}
+</a>
+</div>
+</td>
+
+<td>{{ productdetails.price }} €</td>
+
+{% if productdetails.stock > 10 %}
+
+<td class="text-success">Available</td>
+
+{% elseif productdetails.stock == 0 %}
+
+<td class="text-danger">Sold Out</td>
+
+{% elseif productdetails.stock < 10 %}
+
+<td class="text-warning">Low Stock</td>
+
+
+{% endif %}
+</tr>
+
+{% endfor %}
+{% endfor %}
+
+
+
+</tbody>
+</table>
+
+
+
+
+{# 
+                <div>
+                    <h6><a href="{{ path('products_show', {'category': category.name, 'sub_category':  product.subCategory, 'id': product.id}) }}">{{ product.name }}</a></h6>
+                    <p>{{ product.description }}</p>
+                    <p>
+                            #{{ productdetails }}
+                    </p>
+                    <p>{{ product.date | date }}</p>
+                </div> #}
+        </div>
+    </div>
+
+
+</div>
+    {#<a href="{{ path('sub_categories_index') }}">back to list</a>#}
+
+    {#<a href="{{ path('sub_categories_edit', {'id': sub_category.id}) }}">edit</a>#}
+
+    {#{{ include('sub_categories/_delete_form.html.twig') }}#}
+{% endblock %}

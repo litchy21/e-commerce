@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <title>{% block title %}My Quizz{% endblock %}</title>
+        {% block stylesheets %}   <link href="{{ asset('css/style.css') }}" rel="stylesheet" /> {% endblock %}
+        <script
+              src="https://code.jquery.com/jquery-3.3.1.min.js"
+              integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+              crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+        {% block body %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+          <a href="/admin">Admin</a>
+        {% endif %}
+
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <a href="{{ url('history_scores') }}">Scores</a>
+        <a href="{{ url('categorie_new') }}">Créer un Quizz</a>
+        <a  href="/logout">Deconnexion</a>
+        {% else %}
+        <a href="{{ url('history_scores') }}">Scores</a>
+        <a href="/register">Inscription</a>
+        <a href="/login">Connexion</a>
+        {% endif %}
+        <div class="container">
+          <div class="titre row justify-content-center">
+            <div class="col-3">
+          <h1>My Quizz</h1>
+        </div>
+      </div>
+    </div>
+          <h4>Catégories:</h4>
+          <ul id="navigation">
+            {% for cat in categorie %}
+                <li><a href="categorie/{{ cat.id }}">{{ cat.name }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endblock %}
+        {% block javascripts %}  {% endblock %}
+
+    </body>
+
+</html>

@@ -1,0 +1,27 @@
+easy_admin:
+   list:
+        max_results: 25
+   entities:
+        Categories:
+            class: App\Entity\Categories
+        SubCategories:
+            class: App\Entity\SubCategories
+        Products:
+            class: App\Entity\Products
+        ProductDetails:
+            class: App\Entity\ProductDetails
+        Variants:
+            class: App\Entity\Variants
+        VariantOptions:
+            class: App\Entity\VariantOptions
+        Orders:
+            class: App\Entity\Orders
+        Payments:
+            class: App\Entity\Payments
+        Users:
+            class: App\Entity\Users
+
+   site_name: 'Tech Factory'
+   design:
+        brand_color: '#1ABC9C'
+

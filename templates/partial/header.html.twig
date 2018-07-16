@@ -1,0 +1,66 @@
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="{{path('home')}}">Tech-Factory</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{path('home')}}">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Cart</a>
+                </li>
+
+
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Admin Panel</a>
+                </li>
+                {% endif %}
+
+                {% if app.user %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+                {% else %}
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path("users_registration")}}">Login/Sign up</a>
+                </li>
+
+                {% endif %}
+
+            </ul>
+            <form class="form-inline" action="{{ path("products_search")}}" method="GET">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg pt-4 pb-3">
+    <div class="container">
+        <div class="row">
+        {% for categorie in categories %}
+            <div class="col">
+            <div class="dropdown">
+
+                <a class="btn btn-secondary btn-sm dropdown-toggle" href="{{ path('categories_show', {'slug': categorie.name}) }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ categorie }}
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                {% for subCategorie in categorie.subCategories %}
+                    <a class="dropdown-item" href="{{ path('sub_categories_show', {'category': categorie, 'sub_category':  subCategorie}) }}">{{ subCategorie }}</a>
+                {% endfor %}
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</nav>

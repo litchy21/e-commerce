@@ -1,0 +1,93 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+#my_margin {
+    margin-bottom: 0px;
+    margin-top: 15px;
+}
+span.glyphicon {
+    color: grey;
+}
+span.glyphicon:hover {
+    color: white;
+}
+#active_acceuil {
+    color: grey;
+    background-color: transparent;
+}
+#active_acceuil:hover {
+    color: white;
+}
+.navbar-inverse {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+/*body.back-end-img{*/
+/*background-image: url("../image/coin.jpg");*/
+/*}*/
+/*h1, th, td {*/
+/*color: white!important;*/
+/*}*/
+.products_total {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.form-group {
+    margin-bottom: 0.2rem;
+}
+
+.card {
+    width: 18rem;
+    height: 18rem;
+    display: block;
+    overflow: hidden;
+}
+.card-layout {
+    width: 100%;
+    border: 1px black solid;
+}
+
+.carousel-size {
+    height: 400px;
+}
+
+.list-group-item.active {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #6c757d;
+}
+
+.card-small {
+    width: 6rem;
+    height: 6rem;
+    display: block;
+    overflow: hidden;
+}
+
+.alink {
+    color: rgb(102, 102, 102);
+}
+.alink:hover {
+    color: black;
+    text-decoration: none;
+}
+.alink:focus {
+    color: black;
+    text-decoration: none;
+}
+.alink:active {
+    color: black;
+    text-decoration: none;
+}
+
+.border-add-cart {
+    border: 2px solid black;
+}

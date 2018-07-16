@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Products{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <h4 class="border-bottom pb-3">
+                    {{ subcategories }}
+                    <strong>
+                    {{ productDetails.product.name}} 
+                    </strong>
+                    {% for variantoption in productDetails.variantoption %}
+                        {% if variantoption.variant == "Stockage" %}
+                            - {{ variantoption.detail }}
+                        {% endif %}
+                    {% endfor %}
+                </h4>
+            </div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <div class="col m-3">
+                <img class="img-thumbnail" src="{{ productDetails.photo }}" />
+            </div>
+            <div class="col d-flex justify-content-center flex-column m-3">
+                {% for variantoption in productDetails.variantoption %}
+                    <p class="m-0">{{ variantoption.variant }} : {{ variantoption.detail }}</p>
+                {% endfor %}
+            </div>
+            <div class="col d-flex align-items-center m-3">
+                <div class="d-flex align-items-center flex-column p-4 border-add-cart rounded">
+                    <h4>{{ productDetails.price }}€</h4>
+                    {% if productDetails.stock > 10 %}
+
+                    <h5 class="text-success">Available</h5>
+                    <a href="#" class="btn btn-success">Add to Cart</a>
+
+                    {% elseif productDetails.stock == 0 %}
+                    <h5 class="text-danger">Sold Out</h5>
+                    {% elseif productDetails.stock < 10 %}
+
+                    <h5 class="text-warning">Low Stock</h5>
+                    <a href="#" class="btn btn-success">Add to Cart</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

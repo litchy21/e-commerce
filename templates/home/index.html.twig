@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+
+
+<div class="container">
+    <div class="row pt-4">
+        <div class="col-12 p-0 m-0">
+        <div id="carouselExampleIndicators" class="carousel slide bg-dark" data-ride="carousel" style="height: 400px">
+        <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+        <div class="carousel-item active ">
+            <div class="d-flex justify-content-center">
+            <a class="d-block carousel-size"  href="#">
+            <img style="max-height: 100%" class="h-100" src="{{ all_productDetails.0.photo }}" alt="First slide">
+            </a>
+            </div>
+        </div>
+        <div class="carousel-item">
+        <div class="d-flex justify-content-center">
+        <a class="d-block carousel-size" href="#">
+            <img style="max-height: 100%" class="h-100" src="{{ all_productDetails.1.photo }}" alt="Second slide">
+            </a>
+            </div>
+        </div>
+        <div class="carousel-item">
+        <div class="d-flex justify-content-center">
+        <a class="d-block carousel-size" href="#">
+            <img style="max-height: 100%" class="h-100" src="{{ all_productDetails.2.photo }}" alt="Third slide">
+            </a>
+        </div>
+        </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+        </a>
+        </div>
+        </div>
+    </div>
+</div>
+    <div class="container mb-5">
+        <div class="row pt-4 ">
+            {% for productDetails in list_productDetails %}
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 p-0 m-0 d-flex justify-content-center">
+
+            
+                <div class="card-layout">
+                    <a href="{{ path('products_show', {'category': productDetails.product.category.name, 'sub_category':  productDetails.product.subCategory, 'id': productDetails.product.id}) }}" class="d-block w-100 alink">
+                    <img class="img-card w-100" src="{{ productDetails.photo }}" alt="{{ productDetails.product.name }} image">
+                    <div class="p-2">
+                        <div class="d-flex justify-content-around">
+                        <h5 class="">{{ productDetails.product.name }}</h5>
+                        
+                        {% for variantoption in productDetails.variantoption %}
+                            {% if variantoption.variant == "Stockage" %}
+
+                            <p class="">{{ variantoption.detail }}</p>
+
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
